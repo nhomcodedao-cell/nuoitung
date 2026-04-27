@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { 
-  ArrowLeft, Share, Clock, ChevronDown, 
-  Delete, CreditCard, Landmark, QrCode, Copy,
+  ArrowLeft, Share, Clock, 
+  Delete, CreditCard, Landmark, Copy,
   Phone, Mail, Facebook, Heart
 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
-import { Scrollbars } from 'react-custom-scrollbars-2';
 
 type Currency = 'VND' | 'USD' | 'CNY';
 
@@ -155,14 +154,6 @@ export default function CharityDonationPage() {
     });
   };
 
-  const renderThumb = ({ style, ...props }: any) => {
-    const thumbStyle = {
-      backgroundColor: 'rgba(150, 150, 150, 0.5)',
-      borderRadius: '10px'
-    };
-    return <div style={{ ...style, ...thumbStyle }} {...props} />;
-  };
-
   // ================= VIETQR =================
   const getVietQRUrl = () => {
     const vndAmount = convertToVND(displayAmount, currency);
@@ -201,13 +192,7 @@ export default function CharityDonationPage() {
           {/* ================= SCREEN 1: DETAIL ================= */}
           {currentScreen === 'detail' && (
             <div className="flex-1 flex flex-col h-full relative overflow-hidden bg-white dark:bg-[#0F1115]">
-              <Scrollbars 
-                autoHide 
-                autoHideTimeout={1000} 
-                autoHideDuration={200}
-                renderThumbVertical={renderThumb}
-                style={{ width: '100%', height: '100%' }}  
-              >
+              <div className="w-full h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="relative h-56 w-full flex-shrink-0 bg-gray-200 dark:bg-gray-800">
                   <Image 
                     src="/assets/images/banner.jpg" 
@@ -218,7 +203,7 @@ export default function CharityDonationPage() {
                   />
                   <div className="absolute top-0 left-0 w-full flex justify-between items-center px-4 pt-10 text-white bg-gradient-to-b from-black/70 to-transparent pb-4">
                     <button className="p-2 bg-black/20 rounded-full backdrop-blur-sm hover:bg-black/40 transition-colors"><ArrowLeft size={18} /></button>
-                    <button className="p-2 bg-black/20 rounded-full backdrop-blur-sm hover:bg-black/40 transition-colors" onClick={() => handleCopy('https://quynguoitung.com', 'Đã chép link!')}>
+                    <button className="p-2 bg-black/20 rounded-full backdrop-blur-sm hover:bg-black/40 transition-colors" onClick={() => handleCopy('https://nuoitung.vercel.app/', 'Đã chép link!')}>
                       <Share size={16} />
                     </button>
                   </div>
@@ -280,7 +265,7 @@ export default function CharityDonationPage() {
                     </div>
                   </div>
                 </div>
-              </Scrollbars>
+              </div>
 
               <div className="absolute bottom-0 left-0 w-full p-4 bg-white/90 dark:bg-[#0F1115]/90 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 z-20">
                 <button 
@@ -357,11 +342,7 @@ export default function CharityDonationPage() {
           {/* ================= SCREEN 3: METHOD ================= */}
           {currentScreen === 'method' && (
             <div className="flex-1 flex flex-col bg-white dark:bg-[#0F1115] px-5 py-8 sm:py-10 h-full justify-between animate-fade-in overflow-hidden">
-              <Scrollbars 
-                autoHide 
-                renderThumbVertical={renderThumb}
-                style={{ width: '100%', height: '100%' }}  
-              >
+              <div className="w-full h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="flex justify-between items-center mb-6 text-gray-900 dark:text-white">
                   <button onClick={() => setCurrentScreen('amount')} className="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"><ArrowLeft size={22} /></button>
                   <h2 className="font-semibold text-lg">Phương thức</h2>
@@ -437,7 +418,7 @@ export default function CharityDonationPage() {
                     <CreditCard size={18} className="text-orange-400" />
                   </div>
                 </div>
-              </Scrollbars>
+              </div>
 
               <div className="pt-3 bg-white dark:bg-[#0F1115]">
                 <button 
@@ -453,11 +434,7 @@ export default function CharityDonationPage() {
           {/* ================= SCREEN 4: QR ================= */}
           {currentScreen === 'qr' && (
             <div className="flex-1 flex flex-col bg-white dark:bg-[#0F1115] px-5 py-8 sm:py-10 h-full justify-between animate-fade-in overflow-hidden">
-              <Scrollbars 
-                autoHide 
-                renderThumbVertical={renderThumb}
-                style={{ width: '100%', height: '100%' }}
-              >
+              <div className="w-full h-full overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 <div className="flex justify-between items-center mb-6 text-gray-900 dark:text-white">
                   <button onClick={() => setCurrentScreen('method')} className="p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"><ArrowLeft size={22} /></button>
                   <h2 className="font-semibold text-lg">Thanh toán QR</h2>
@@ -515,7 +492,7 @@ export default function CharityDonationPage() {
                     </div>
                   </div>
                 </div>
-              </Scrollbars>
+              </div>
 
               <div className="pt-4 bg-white dark:bg-[#0F1115]">
                 <button 
