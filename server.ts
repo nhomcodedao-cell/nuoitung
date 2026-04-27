@@ -3,6 +3,7 @@ import next from "next";
 const dev = process.env.NODE_ENV !== "production";
 const PORT = process.env.PORT;
 
+
 const app = next({ dev });
 declare global {
   namespace NodeJS {
