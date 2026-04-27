@@ -11,6 +11,7 @@ declare global {
     }
   }
 }
+
 if (dev) {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "1";
   process.noDeprecation = true;
