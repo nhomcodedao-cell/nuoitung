@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dulich-vn.vercel.app
+
+# Sitemaps
+Sitemap: https://dulich-vn.vercel.app/sitemap.xml
